@@ -1,30 +1,31 @@
 import sys
 import os
 
-
-current_path = os.path.abspath(os.getcwd())
-
 if len(sys.argv) == 1:
-    print("What's going on here buddy? You need to give me a name... cancelling script")
+    print("What's going on here buddy?\nYou need to give me a name...\nplease")
     exit() 
 
+
 if len(sys.argv) >2:
-    print("Woah there cowbow! This is UNIX! Let's avoid spaces in directory names, shall we? Don't try to be smart by putting the whole thing in quotes either!")
+    print("Woah there cowbow!\nThis is UNIX!\nLet's avoid spaces in directory names, shall we?\nDon't try to be smart by putting the whole thing in quotes either!")
     exit()
 
+if ' ' in sys.argv[1]:
+    print("Okay, look smart guy/gal/non-binary pal.\nThis is UNIX.\nYou REALLY shouldn't be putting spaces in your directory names!!!\nBE BETTER!")
+    exit()
+ 
+current_path = os.path.abspath(os.getcwd())
 
-print("making directory and subdirectories for: {0}".format(sys.argv[1]))
 newpath = os.path.join(current_path, sys.argv[1]) 
-vcfs = os.path.join(newpath,"VCFs")
-gffs = os.path.join(newpath,"GFFs")
-misc = os.path.join(newpath,"misc")
-DATA = os.path.join(newpath,"data")
 
-if not os.path.exists(vcfs):
-    os.makedirs(vcfs)
-if not os.path.exists(gffs):
-    os.makedirs(gffs)
-if not os.path.exists(misc):
-    os.makedirs(misc)
-if not os.path.exists(DATA):
-    os.makedirs(DATA)
+subdirs = ["VCFs","GFFs","misc","data"]
+
+print("Making directory and subdirectories for: {0}".format(sys.argv[1]))
+
+for i in subdirs:
+    if not os.path.exists(os.path.join(newpath,i)):
+        os.makedirs(os.path.join(newpath,i))
+    else:
+        print("{0}/{1} already exists.".format(sys.argv[1],i))
+        
+###
