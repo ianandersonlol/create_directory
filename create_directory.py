@@ -5,7 +5,6 @@ if len(sys.argv) == 1:
     print("What's going on here buddy?\nYou need to give me a name...\nplease")
     exit() 
 
-
 if len(sys.argv) >2:
     print("Woah there cowbow!\nThis is UNIX!\nLet's avoid spaces in directory names, shall we?\nDon't try to be smart by putting the whole thing in quotes either!")
     exit()
